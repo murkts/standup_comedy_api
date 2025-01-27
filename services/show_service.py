@@ -1,16 +1,11 @@
 from models.show import Show
 
 class ShowService:
-    def __init__(self):
-        self.shows = [
-            Show(1001, 1, "2024-10-20T20:00:00", "Клуб Комедии"),
-            Show(1002, 2, "2024-10-21T18:00:00", "Клуб Трагедии")
-        ]
+    _shows = [
+        Show(1, 1, "2025-02-01T20:00:00", "Клуб Комедии"),
+        Show(2, 2, "2025-02-02T18:00:00", "Театр Трагедии")
+    ]
 
-    def get_shows(self):
-        return self.shows
-
-    def add_show(self, data):
-        new_show = Show(len(self.shows) + 1, data['performer_id'], data['date_time'], data['venue'])
-        self.shows.append(new_show)
-        return new_show
+    @classmethod
+    def get_all(cls):
+        return [show.to_dict() for show in cls._shows]

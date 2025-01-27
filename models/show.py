@@ -7,8 +7,8 @@ class Show:
 
     def to_dict(self):
         return {
-            'show_id': self.show_id,
-            'performer_id': self.performer_id,
-            'date_time': self.date_time,
-            'venue': self.venue
+            "show_id": self.show_id,
+            "performer_id": self.performer_id,
+            "date_time": self.date_time,
+            "venue": self.venue
         }

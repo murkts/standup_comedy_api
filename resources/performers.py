@@ -1,51 +1,23 @@
-from flask import Blueprint, jsonify, request
+from flask_restx import Namespace, Resource, fields
 from services.performer_service import PerformerService
-from flasgger import swag_from
 
-performers_bp = Blueprint('performers', __name__)
+api = Namespace("Performers", description="Операции с артистами")
 
-performer_service = PerformerService()
-
-@performers_bp.route('/', methods=['GET'])
-@swag_from({
-    'tags': ['Performers'],
-    'summary': 'Получить список всех артистов',
-    'parameters': [
-        {'name': 'rating_min', 'in': 'query', 'description': 'Минимальный рейтинг артиста', 'schema': {'type': 'number', 'format': 'float'}},
-        {'name': 'rating_max', 'in': 'query', 'description': 'Максимальный рейтинг артиста', 'schema': {'type': 'number', 'format': 'float'}},
-        {'name': 'limit', 'in': 'query', 'description': 'Лимит записей на страницу', 'schema': {'type': 'integer'}},
-        {'name': 'offset', 'in': 'query', 'description': 'Смещение записей', 'schema': {'type': 'integer'}}
-    ],
-    'responses': {
-        '200': {
-            'description': 'Список артистов',
-            'content': {
-                'application/json': {
-                    'schema': {'type': 'array', 'items': {'$ref': '#/components/schemas/Performer'}}
-                }
-            }
-        }
-    }
+performer_model = api.model("Performer", {
+    "performer_id": fields.Integer(readOnly=True, description="ID артиста"),
+    "name": fields.String(required=True, description="Имя артиста"),
+    "bio": fields.String(required=True, description="Биография артиста"),
+    "rating": fields.Float(required=True, description="Рейтинг артиста")
 })
-def get_performers():
-    performers = performer_service.get_performers()
-    return jsonify([performer.to_dict() for performer in performers])
 
-@performers_bp.route('/', methods=['POST'])
-@swag_from({
-    'tags': ['Performers'],
-    'summary': 'Добавить нового артиста',
-    'requestBody': {
-        'required': True,
-        'content': {
-            'application/json': {
-                'schema': {'$ref': '#/components/schemas/PerformerCreation'}
-            }
-        }
-    },
-    'responses': {'201': {'description': 'Артист успешно добавлен'}}
-})
-def add_performer():
-    data = request.get_json()
-    new_performer = performer_service.add_performer(data)
-    return jsonify(new_performer.to_dict()), 201
+@api.route("/")
+class PerformerList(Resource):
+    @api.marshal_list_with(performer_model)
+    def get(self):
+        """Получить список артистов"""
+        return PerformerService.get_all()
+
+    @api.expect(performer_model, validate=True)
+    def post(self):
+        """Добавить нового артиста"""
+        return PerformerService.create(api.payload), 201

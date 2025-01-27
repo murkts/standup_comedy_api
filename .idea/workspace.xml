@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9997846a-6794-43c0-bed4-dab7a5afd0a7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/standup_comedy_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/standup_comedy_api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/performer.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/performer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/show.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/show.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/ticket.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ticket.py" afterDir="false" />
@@ -41,21 +39,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "murkts"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;murkts&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/murkts/standup_comedy_api.git",
-    "accountId": "0e6b665d-8818-4656-81a2-17f08e0fa14f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/murkts/standup_comedy_api.git&quot;,
+    &quot;accountId&quot;: &quot;0e6b665d-8818-4656-81a2-17f08e0fa14f&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2sAq4ZqCTXGEyOdDK4DXLBneAOB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -66,6 +64,7 @@
   "keyToString": {
     "Flask server.standup_comedy_api.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -110,6 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737908538468</updated>
       <workItem from="1737908539348" duration="3908000" />
+      <workItem from="1737955793377" duration="311000" />
     </task>
     <servers />
   </component>

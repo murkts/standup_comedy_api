@@ -1,50 +1,41 @@
-from flask import Blueprint, jsonify, request
+from flask_restx import Namespace, Resource, fields
 from services.show_service import ShowService
-from flasgger import swag_from
 
-shows_bp = Blueprint('shows', __name__)
+api = Namespace("Shows", description="Операции с выступлениями")
 
-show_service = ShowService()
-
-@shows_bp.route('/', methods=['GET'])
-@swag_from({
-    'tags': ['Shows'],
-    'summary': 'Получить расписание выступлений',
-    'parameters': [
-        {'name': 'performer_id', 'in': 'query', 'description': 'ID артиста', 'schema': {'type': 'integer'}},
-        {'name': 'date', 'in': 'query', 'description': 'Дата выступления', 'schema': {'type': 'string', 'format': 'date'}},
-        {'name': 'venue', 'in': 'query', 'description': 'Место проведения', 'schema': {'type': 'string'}}
-    ],
-    'responses': {
-        '200': {
-            'description': 'Расписание выступлений',
-            'content': {
-                'application/json': {
-                    'schema': {'type': 'array', 'items': {'$ref': '#/components/schemas/Show'}}
-                }
-            }
-        }
-    }
+show_model = api.model("Show", {
+    "show_id": fields.Integer(readOnly=True, description="ID выступления"),
+    "performer_id": fields.Integer(required=True, description="ID артиста, участвующего в стенд-апе"),
+    "date_time": fields.String(required=True, description="Дата и время выступления (ISO формат)"),
+    "venue": fields.String(required=True, description="Место проведения стенд-апа")
 })
-def get_shows():
-    shows = show_service.get_shows()
-    return jsonify([show.to_dict() for show in shows])
 
-@shows_bp.route('/', methods=['POST'])
-@swag_from({
-    'tags': ['Shows'],
-    'summary': 'Добавить новое выступление',
-    'requestBody': {
-        'required': True,
-        'content': {
-            'application/json': {
-                'schema': {'$ref': '#/components/schemas/ShowCreation'}
-            }
-        }
-    },
-    'responses': {'201': {'description': 'Выступление успешно добавлено'}}
-})
-def add_show():
-    data = request.get_json()
-    new_show = show_service.add_show(data)
-    return jsonify(new_show.to_dict()), 201
+@api.route("/")
+class ShowList(Resource):
+    @api.marshal_list_with(show_model)
+    def get(self):
+        """Получить список выступлений"""
+        return ShowService.get_all()
+
+    @api.expect(show_model, validate=True)
+    def post(self):
+        """Добавить новое выступление"""
+        return ShowService.create(api.payload), 201
+
+
+@api.route("/<int:show_id>")
+@api.param("show_id", "ID выступления")
+class Show(Resource):
+    @api.marshal_with(show_model)
+    def get(self, show_id):
+        """Получить информацию о конкретном выступлении"""
+        show = ShowService.get_by_id(show_id)
+        if not show:
+            api.abort(404, f"Выступление с ID {show_id} не найдено")
+        return show
+
+    def delete(self, show_id):
+        """Удалить Выступление"""
+        if ShowService.delete(show_id):
+            return {"message": f"Выступление с ID {show_id} удалено"}, 200
+        api.abort(404, f"Выступление с ID {show_id} не найдено")

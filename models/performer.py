@@ -7,8 +7,8 @@ class Performer:
 
     def to_dict(self):
         return {
-            'performer_id': self.performer_id,
-            'name': self.name,
-            'bio': self.bio,
-            'rating': self.rating
+            "performer_id": self.performer_id,
+            "name": self.name,
+            "bio": self.bio,
+            "rating": self.rating
         }
