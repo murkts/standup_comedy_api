@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: Stand-Up Comedy API
+  description: API для управления стендап-шоу
+  version: "1.0"
+servers:
+  - url: /
+    description: Базовый URL
+paths:
+  /performers/:
+    post:
+      tags:
+        - Performers
+      summary: Добавить нового артиста
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Performer'
+      responses:
+        '201':
+          description: Артист успешно добавлен
+        '400':
+          description: Неверные данные
+    get:
+      tags:
+        - Performers
+      summary: Получить список артистов
+      responses:
+        '200':
+          description: Список артистов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Performer'
+  /shows/:
+    post:
+      tags:
+        - Shows
+      summary: Добавить новое выступление
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Show'
+      responses:
+        '201':
+          description: Выступление успешно добавлено
+        '400':
+          description: Неверные данные
+    get:
+      tags:
+        - Shows
+      summary: Получить список выступлений
+      responses:
+        '200':
+          description: Список выступлений
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Show'
+  /shows/{show_id}:
+    get:
+      tags:
+        - Shows
+      summary: Получить информацию о конкретном выступлении
+      parameters:
+        - name: show_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Информация о выступлении
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+        '404':
+          description: Выступление не найдено
+    delete:
+      tags:
+        - Shows
+      summary: Удалить выступление
+      parameters:
+        - name: show_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Выступление удалено
+        '404':
+          description: Выступление не найдено
+  /tickets/:
+    post:
+      tags:
+        - Tickets
+      summary: Добавить новый билет
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ticket'
+      responses:
+        '201':
+          description: Билет успешно добавлен
+        '400':
+          description: Неверные данные
+    get:
+      tags:
+        - Tickets
+      summary: Получить список всех билетов
+      responses:
+        '200':
+          description: Список билетов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ticket'
+  /tickets/{ticket_id}:
+    get:
+      tags:
+        - Tickets
+      summary: Получить информацию о конкретном билете
+      parameters:
+        - name: ticket_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Информация о билете
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '404':
+          description: Билет не найден
+    delete:
+      tags:
+        - Tickets
+      summary: Удалить билет
+      parameters:
+        - name: ticket_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Билет удалён
+        '404':
+          description: Билет не найден
+components:
+  schemas:
+    Performer:
+      type: object
+      properties:
+        performer_id:
+          type: integer
+          description: ID артиста
+        name:
+          type: string
+          description: Имя артиста
+        bio:
+          type: string
+          description: Биография артиста
+        rating:
+          type: number
+          description: Рейтинг артиста
+    Show:
+      type: object
+      properties:
+        show_id:
+          type: integer
+          description: ID выступления
+        performer_id:
+          type: integer
+          description: ID артиста, участвующего в стенд-апе
+        date_time:
+          type: string
+          format: date-time
+          description: Дата и время выступления (ISO формат)
+        venue:
+          type: string
+          description: Место проведения стенд-апа
+    Ticket:
+      type: object
+      properties:
+        ticket_id:
+          type: integer
+          description: ID билета
+        show_id:
+          type: integer
+          description: ID шоу
+        user_id:
+          type: integer
+          description: ID пользователя
+        seat_number:
+          type: string
+          description: Номер места
+        price:
+          type: number
+          description: Цена билета
