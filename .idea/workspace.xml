@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9997846a-6794-43c0-bed4-dab7a5afd0a7" name="Changes" comment="обновлена спецификация, расширен функционал">
-      <change afterPath="$PROJECT_DIR$/resources/performers_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/shows_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/openapi.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/prometheus.yml" afterDir="false" />
+    <list default="true" id="9997846a-6794-43c0-bed4-dab7a5afd0a7" name="Changes" comment="добавлены метрики">
+      <change afterPath="$PROJECT_DIR$/Loki/promtail-config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/performers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/shows.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/tickets.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/tickets_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +66,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\murkt\PycharmProjects\standup_comedy_api\Loki" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="standup_comedy_api" type="Python.FlaskServer">
       <module name="standup_comedy_api" />
@@ -109,7 +108,7 @@
       <workItem from="1737908539348" duration="3908000" />
       <workItem from="1737955793377" duration="3519000" />
       <workItem from="1737975749087" duration="1030000" />
-      <workItem from="1737978651042" duration="1563000" />
+      <workItem from="1737978651042" duration="11506000" />
     </task>
     <task id="LOCAL-00001" summary="обновлена спецификация, расширен функционал">
       <option name="closed" value="true" />
@@ -119,7 +118,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737956245429</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="добавлены метрики">
+      <option name="closed" value="true" />
+      <created>1737981104141</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737981104141</updated>
+    </task>
+    <task id="LOCAL-00003" summary="добавлены метрики">
+      <option name="closed" value="true" />
+      <created>1737981121857</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737981121857</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,9 +142,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="обновлена спецификация, расширен функционал" />
-    <option name="LAST_COMMIT_MESSAGE" value="обновлена спецификация, расширен функционал" />
+    <MESSAGE value="добавлены метрики" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлены метрики" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/standup_comedy_api$standup_comedy_api.coverage" NAME="standup_comedy_api Coverage Results" MODIFIED="1737979569748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/standup_comedy_api$standup_comedy_api.coverage" NAME="standup_comedy_api Coverage Results" MODIFIED="1737995868956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
